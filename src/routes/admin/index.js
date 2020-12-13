@@ -2,6 +2,9 @@ import React, { Suspense } from 'react';
 import { Spin } from 'antd';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Dashboard from './dashboard';
+import ChatApp from '../../container/chat/ChatApp';
+import Product from './products'
+import Orders from './orders'
 import withAdminLayout from '../../layout/withAdminLayout';
 
 const Admin = () => {
@@ -17,6 +20,9 @@ const Admin = () => {
         }
       >
         <Route path={path} component={Dashboard} />
+        <Route path={`${path}/products`} component={Product} />
+        <Route path={`${path}/orders`} component={Orders} />
+        <Route path={`${path}/chat`} component={ChatApp} />
       </Suspense>
     </Switch>
   );

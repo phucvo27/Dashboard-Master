@@ -33,7 +33,7 @@ const AutoComplete = props => {
     };
   });
   const { customComponent, patterns, patternButtons, width, onSearch, dataSource, placeholder } = props;
-
+  console.log(dataSource)
   const content =
     dataSource?.length > 0 &&
     dataSource.map(group => {

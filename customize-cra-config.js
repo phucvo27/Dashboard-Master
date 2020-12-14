@@ -34,7 +34,7 @@ module.exports = override(
     test: /\.css$/,
     loaders: ['style-loader', 'css-loader?modules'],
   }),
-  supportMjs(),
+  // supportMjs(),
   (config, env) => {
     return hotLoader(config, env);
   },

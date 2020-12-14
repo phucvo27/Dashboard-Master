@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Product = lazy(() => import('../../../container/products'));
-const Category = lazy(() => import('../../../container/products/category/category'))
+const Category = lazy(() => import('../../../container/products/category/category.container'))
 const ProductRoutes = () => {
   const { path } = useRouteMatch();
   console.log(path)

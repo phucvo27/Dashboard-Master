@@ -7,6 +7,9 @@ import { userReducer } from './users/reducers';
 import { headerSearchReducer } from './headerSearch/reducers';
 import { chatReducer, SingleChatReducer, groupChatReducer, SingleChatGroupReducer } from './chat/reducers';
 import orderReducer from './orders/reducers';
+import cartData from './cart/reducers';
+import { productReducer, SingleProductReducer } from './product/reducers';
+
 const rootReducers = combineReducers({
   headerSearchData: headerSearchReducer,
   message: readMessageReducer,
@@ -19,6 +22,9 @@ const rootReducers = combineReducers({
   chatSingleGroup: SingleChatGroupReducer,
   chat: chatReducer,
   groupChat: groupChatReducer,
+  cart: cartData,
+  products: productReducer,
+  product: SingleProductReducer,
 });
 
 export default rootReducers;

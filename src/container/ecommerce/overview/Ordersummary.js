@@ -8,8 +8,8 @@ import { Cards } from '../../../components/cards/frame/cards-frame';
 import Heading from '../../../components/heading/heading';
 import { Button } from '../../../components/buttons/buttons';
 import { cartGetData } from '../../../redux/cart/actionCreator';
-
-const Ordersummary = ({ subtotal, isExact, path }) => {
+import { addCommas } from '../../../utility/utility'
+const Ordersummary = ({ discount, isExact, path, totalAmount, totalAmountAfterDiscounted }) => {
   const dispatch = useDispatch();
   const { rtl } = useSelector(state => {
     return {
@@ -43,6 +43,14 @@ const Ordersummary = ({ subtotal, isExact, path }) => {
       }
     });
   };
+  const renderDiscount = () => {
+    const {  discountCode, discountType, discountValue } = discount;
+    if(discountCode) {
+      return discountType === 'fixed' ? addCommas(discountValue) : `${discountValue}%`
+    }else {
+      return 'None'
+    }
+  }
 
   return (
     <Cards
@@ -64,50 +72,32 @@ const Ordersummary = ({ subtotal, isExact, path }) => {
           headless
         >
           <div className="order-summary-inner">
-            <ul className="summary-list">
+            <ul className="summary-list" style={{marginBottom: '40px'}}>
               <li>
-                <span className="summary-list-title">Subtotal :</span>
-                <span className="summary-list-text">{`$${subtotal}`}</span>
+                <span className="summary-list-title">Đơn Giá :</span>
+                <span className="summary-list-text">{`${addCommas(totalAmount)}đ`}</span>
               </li>
               <li>
-                <span className="summary-list-title">Discount :</span>
-                <span className="summary-list-text">{`$${-20}`}</span>
+                <span className="summary-list-title">Giảm Giá :</span>
+                <span className="summary-list-text">{renderDiscount()}đ</span>
               </li>
               <li>
-                <span className="summary-list-title">Shipping Charge :</span>
-                <span className="summary-list-text">{`$${30}`}</span>
+                <span className="summary-list-title">Shipping :</span>
+                <span className="summary-list-text">{addCommas(5000)}</span>
               </li>
+              {
+                discount.discountCode &&
+                <li>
+                  <span className="summary-list-title">Mã Giảm Giá :</span>
+                  <span className="summary-list-text" style={{color: '#5F63F2'}}>{discount.discountCode}</span>
+              </li>
+              }
             </ul>
-            <Form form={form} name="promo" onFinish={submitPromo}>
-              <Form.Item name="couponType" initialValue="" label="">
-                <Select style={{ width: '100%' }}>
-                  <Option value="">
-                    <img src={require('../../../static/img/Subtraction1.png')} alt="" /> Select Coupon
-                  </Option>
-                  <Option value="one">
-                    <img src={require('../../../static/img/Subtraction1.png')} alt="" /> Coupon one
-                  </Option>
-                  <Option value="tow">
-                    <img src={require('../../../static/img/Subtraction1.png')} alt="" /> Coupon tow
-                  </Option>
-                </Select>
-              </Form.Item>
-              <div className="promo-apply-form">
-                <Form.Item name="promoCode" label="Promo Code">
-                  <Input placeholder="Promo Code" />
-                </Form.Item>
-                <Form.Item>
-                  <Button htmlType="submit" size="default" type="success" outlined>
-                    Apply
-                  </Button>
-                </Form.Item>
-              </div>
-            </Form>
             <Heading className="summary-total" as="h4">
-              <span className="summary-total-label">Total : </span>
-              <span className="summary-total-amount">{`$${subtotal + 30 - 20}`}</span>
+              <span className="summary-total-label">Tổng Tiền: </span>
+              <span className="summary-total-amount">{`${addCommas(totalAmountAfterDiscounted + 5000)}`}đ</span>
             </Heading>
-            {isExact && (
+            {/* {isExact && (
               <Button className="btn-proceed" type="secondary" size="large">
                 <Link to={`${path}/checkout`}>
                   Proceed To Checkout
@@ -119,7 +109,7 @@ const Ordersummary = ({ subtotal, isExact, path }) => {
               <Button onClick={onSubmit} className="btn-proceed" type="secondary" size="large">
                 <Link to="#">Place Order</Link>
               </Button>
-            )}
+            )} */}
           </div>
         </Cards>
       </OrderSummary>

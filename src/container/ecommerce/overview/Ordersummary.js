@@ -1,48 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select } from 'antd';
-import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { OrderSummary } from '../Style';
 import { Cards } from '../../../components/cards/frame/cards-frame';
 import Heading from '../../../components/heading/heading';
-import { Button } from '../../../components/buttons/buttons';
-import { cartGetData } from '../../../redux/cart/actionCreator';
+//import { cartGetData } from '../../../redux/cart/actionCreator';
 import { addCommas } from '../../../utility/utility'
-const Ordersummary = ({ discount, isExact, path, totalAmount, totalAmountAfterDiscounted }) => {
-  const dispatch = useDispatch();
-  const { rtl } = useSelector(state => {
-    return {
-      rtl: state.ChangeLayoutMode.rtlData,
-    };
-  });
+const Ordersummary = ({ discount, totalAmount, totalAmountAfterDiscounted }) => {
+  //const dispatch = useDispatch();
+  // const { rtl } = useSelector(state => {
+  //   return {
+  //     rtl: state.ChangeLayoutMode.rtlData,
+  //   };
+  // });
 
-  const [form] = Form.useForm();
+  //const [form] = Form.useForm();
   const [state, setState] = useState({
     coupon: 0,
     promo: 0,
     current: 0,
   });
 
-  useEffect(() => {
-    if (cartGetData) {
-      dispatch(cartGetData());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (cartGetData) {
+  //     dispatch(cartGetData());
+  //   }
+  // }, [dispatch]);
 
-  const submitPromo = values => {
-    setState({ ...state, promo: values });
-  };
+  // const submitPromo = values => {
+  //   setState({ ...state, promo: values });
+  // };
 
-  const { Option } = Select;
+  // const { Option } = Select;
 
-  const onSubmit = () => {
-    document.querySelectorAll('button span').forEach(item => {
-      if (item.innerHTML === 'Done') {
-        item.click();
-      }
-    });
-  };
+  // const onSubmit = () => {
+  //   document.querySelectorAll('button span').forEach(item => {
+  //     if (item.innerHTML === 'Done') {
+  //       item.click();
+  //     }
+  //   });
+  // };
   const renderDiscount = () => {
     const {  discountCode, discountType, discountValue } = discount;
     if(discountCode) {

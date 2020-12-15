@@ -132,7 +132,36 @@ export const LIST_PRODUCTS = gql`
         }
     }
 `;
-
+export const ADMIN_LIST_PRODUCTS = gql`
+    query AdminListProducts($page: Int, $perPage: Int, $orderBy: QueryProductOrderBy, $orderDir: QueryOrderByDirection) {
+        adminListProducts(page: $page, perPage: $perPage, orderBy: $orderBy, orderDir: $orderDir) {
+            totalDocs
+            docs {
+                _id
+                name
+                description
+                sku
+                salePrice
+                category {
+                    _id
+                    name
+                }
+                images
+                quantity
+                appliedTax
+                buyPriceExcTax
+                buyPriceIncTax
+                salePriceInRegions {
+                    salePrice
+                    saleRegion {
+                        _id
+                        name
+                    }
+                }
+        }
+    }
+    }
+`;
 // ========================= Coupon =========================
 export const GET_COUPONS = gql`
     query AdminListCoupon {

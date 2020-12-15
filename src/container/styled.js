@@ -1322,6 +1322,23 @@ const TableWrapper = Styled.div`
     }    
 `;
 
+const SelectWrapperStyle = Styled.div`
+  margin: -5px;
+  .ant-select{
+    margin: 5px;
+  }
+  .ant-select-selector{
+    border-color: ${({ theme }) => theme['border-color-light']};
+  }
+  .ant-select-multiple.ant-select-sm{
+    .ant-select-selection-item{
+      height: 20px;
+      line-height: 18px;
+      font-size: 11px;
+    }
+  }
+`;
+
 const DragDropStyle = Styled.div`
     .ant-card-body{
         padding: 15px !important;
@@ -1392,4 +1409,5 @@ export {
   FormGroupWrapper,
   DragDropStyle,
   TableWrapper,
+  SelectWrapperStyle
 };

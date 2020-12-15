@@ -99,7 +99,7 @@ const Category = (props) => {
           </Col>
         </Row>
         
-        <Row gutter={15}>
+          <Row gutter={15}>
             <Col md={24}>
               <TableWrapper className="table-order table-responsive">
                 <Table
@@ -117,7 +117,7 @@ const Category = (props) => {
                 />
                 <Row justify="end">
                   <Pagination 
-                    defaultPageSize= {5} 
+                    defaultPageSize= {pageSize} 
                     onChange= {onPageChange}
                     showSizeChanger= {true} 
                     onShowSizeChange={onShowSizeChange}

@@ -17,8 +17,7 @@ const OrderContainer = props => {
 
     //console.log(data)
     const { adminListOrders } = data;
-    
-    return <Orders orders={adminListOrders} />
+    return <Orders {...props} orders={adminListOrders} />
 }
 
 export default OrderContainer;

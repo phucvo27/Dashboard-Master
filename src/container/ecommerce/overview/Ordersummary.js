@@ -46,7 +46,7 @@ const Ordersummary = ({ discount, isExact, path, totalAmount, totalAmountAfterDi
   const renderDiscount = () => {
     const {  discountCode, discountType, discountValue } = discount;
     if(discountCode) {
-      return discountType === 'fixed' ? addCommas(discountValue) : `${discountValue}%`
+      return discountType === 'fixed' ? `${addCommas(discountValue)}đ` : `${discountValue}%`
     }else {
       return 'None'
     }
@@ -62,7 +62,7 @@ const Ordersummary = ({ discount, isExact, path, totalAmount, totalAmountAfterDi
     >
       <OrderSummary>
         <Heading className="summary-table-title" as="h4">
-          Order Summary
+          Thông Tin
         </Heading>
         <Cards
           bodyStyle={{
@@ -79,7 +79,7 @@ const Ordersummary = ({ discount, isExact, path, totalAmount, totalAmountAfterDi
               </li>
               <li>
                 <span className="summary-list-title">Giảm Giá :</span>
-                <span className="summary-list-text">{renderDiscount()}đ</span>
+                <span className="summary-list-text">{renderDiscount()}</span>
               </li>
               <li>
                 <span className="summary-list-title">Shipping :</span>

@@ -5,8 +5,8 @@ import { SearchOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { AutoCompleteStyled } from './style';
 
-const onSelect = () => {
-  // console.log('onSelect', value);
+const onSelect = (value) => {
+  console.log('onSelect', value);
 };
 
 const renderItem = (title, count) => {
@@ -32,7 +32,7 @@ const AutoComplete = props => {
       rtl: state.ChangeLayoutMode.rtlData,
     };
   });
-  const { customComponent, patterns, patternButtons, width, onSearch, dataSource, placeholder } = props;
+  const { customComponent, patterns, patternButtons, width, filterOption, onSelect, onSearch, dataSource, placeholder } = props;
   console.log(dataSource)
   const content =
     dataSource?.length > 0 &&
@@ -77,11 +77,12 @@ const AutoComplete = props => {
     </AutoCompleteStyled>
   ) : (
     <AutoCompleteStyled
-      dataSource={dataSource}
+      options={dataSource}
       style={{ width }}
       onSelect={onSelect}
       onSearch={onSearching}
       placeholder={placeholder}
+      filterOption={filterOption}
     />
   );
 };

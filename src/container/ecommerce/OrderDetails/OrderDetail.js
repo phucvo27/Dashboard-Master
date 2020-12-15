@@ -69,7 +69,7 @@ const ShoppingCart = (props) => {
     <>
       <PageHeader
         ghost
-        title="Shopping Cart"
+        title="Chi Tiết Đơn Hàng"
         buttons={[
           <div key="1" className="page-header-actions">
             <CalendarButtonPageHeader key="1" />

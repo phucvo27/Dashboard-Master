@@ -13,7 +13,7 @@ import { orderFilter } from '../../../redux/orders/actionCreator';
 import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
-
+import { addCommas } from '../../../utility/utility'
 import Notification from '../../../components/notification/Notification'
 const Orders = (props) => {
   console.log(props.orders)
@@ -26,13 +26,20 @@ const Orders = (props) => {
   });
 
   const [state, setState] = useState({
-    notData: searchData,
-    item: orders,
+    data: props.orders ? props.orders.docs : [],
+    item: [],
     selectedRowKeys: [],
   });
-
-  const { notData, item, selectedRowKeys } = state;
-  const filterKey = ['Shipped', 'Awaiting Shipment', 'Canceled'];
+  console.log(state)
+  const { data, item, selectedRowKeys } = state;
+  console.log(data)
+  const filterKey = ['shipped', 'ordered', 'cancelled', 'delivered'];
+  // ordered
+  // requested
+  // packed
+  // shipped
+  // delivered
+  // cancelled
 
   /**
    * @todo purpose
@@ -41,6 +48,7 @@ const Orders = (props) => {
   useEffect(() => {
     if (orders) {
       setState({
+        ...state,
         item: orders,
         selectedRowKeys,
       });
@@ -48,40 +56,54 @@ const Orders = (props) => {
   }, [orders, selectedRowKeys]);
 
   const handleSearch = searchText => {
-    const data = searchData.filter(value => value.title.toUpperCase().startsWith(searchText.toUpperCase()));
+    const res = data.filter(value => value.orderCode.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
       ...state,
-      notData: data,
+      data: res,
     });
   };
 
   const handleChangeForFilter = e => {
-    dispatch(orderFilter('status', e.target.value));
+    //dispatch(orderFilter('status', e.target.value));
+    const typeOrder = e.target.value
+    console.log(typeOrder);
+    console.log(data)
+    const res = props.orders.docs.filter(value => value.shippingStatus.toUpperCase().startsWith(typeOrder.toUpperCase()));
+    console.log(res)
+    setState({
+      ...state,
+      data: res,
+    });
   };
 
   const dataSource = [];
-  if (orders.length) {
-    orders.map((value, key) => {
-      const { status, orderId, customers, amount, date } = value;
+  if (data) {
+    data.map((value, key) => {
+      const { shippingStatus, orderCode, customer, totalAmount, sellDate, _id } = value;
       return dataSource.push({
         key: key + 1,
-        id: <span className="order-id">{orderId}</span>,
-        customer: <span className="customer-name">{customers}</span>,
+        id: <span className="order-id">#{orderCode}</span>,
+        customer: <span className="customer-name">{customer.name}</span>,
         status: (
           <span
             className={`status ${
-              status === 'Shipped' ? 'Success' : status === 'Awaiting Shipment' ? 'warning' : 'error'
+              shippingStatus === 'shipped' ? 'Success' : shippingStatus === 'ordered' ? 'warning' : 'error'
             }`}
           >
-            {status}
+            {shippingStatus}
           </span>
         ),
-        amount: <span className="ordered-amount">{amount}</span>,
-        date: <span className="ordered-date">{date}</span>,
+        amount: <span className="ordered-amount">{addCommas(totalAmount)}</span>,
+        date: <span className="ordered-date">{sellDate}</span>,
         action: (
           <div className="table-actions">
             <>
-              <Button className="btn-icon" type="primary" to="#" shape="circle">
+              <Button 
+                  onClick={() => {props.history.push(`/admin/orders/${_id}`)}}
+                  className="btn-icon" 
+                  type="primary" 
+                  to="#" 
+                  shape="circle">
                 <FeatherIcon icon="eye" size={16} />
               </Button>
               <Button className="btn-icon" type="info" to="#" shape="circle" onClick={()=>{
@@ -135,7 +157,14 @@ const Orders = (props) => {
       key: 'action',
     },
   ];
-
+  const renderOptionsOrderCode = () => {
+    if(data) {
+      return data.map(order => {
+        return order.orderCode
+      })
+    }
+    return [];
+  }
   const onSelectChange = selectedRowKey => {
     setState({ ...state, selectedRowKeys: selectedRowKey });
   };
@@ -170,9 +199,11 @@ const Orders = (props) => {
               <TopToolBox>
                 <Row gutter={15} className="justify-content-center">
                   <Col lg={6} xs={24}>
-                    <div className="table-search-box">
-                      <AutoComplete onSearch={handleSearch} dataSource={notData} width="100%" patterns />
-                    </div>
+                    {/* <div className="table-search-box">
+                      <AutoComplete 
+                        onSearch={handleSearch} 
+                        dataSource={renderOptionsOrderCode()} width="100%" patterns />
+                    </div> */}
                   </Col>
                   <Col xxl={14} lg={16} xs={24}>
                     <div className="table-toolbox-menu">
@@ -211,7 +242,7 @@ const Orders = (props) => {
                   rowSelection={rowSelection}
                   dataSource={dataSource}
                   columns={columns}
-                  pagination={{ pageSize: 7, showSizeChanger: true, total: orders.length }}
+                  pagination={{ pageSize: 7, showSizeChanger: true, total: props.orders.totalDocs }}
                 />
               </TableWrapper>
             </Col>

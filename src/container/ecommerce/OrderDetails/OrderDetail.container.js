@@ -5,11 +5,13 @@ import { Spin } from 'antd';
 import OrderDetail from './OrderDetail';
 
 const OrderDetailContainer = props => {
-    //console.log(props)
+    console.log(props.match.params.orderid)
+    const { orderid } = props.match.params
     const { data, loading, error } = useQuery(ADMIN_GET_ORDER, {
         variables: {
-            id: "5fd6cc68d3d17271cb6411bb"
-        }
+            id: orderid
+        },
+        fetchPolicy: "network-only"
     });
     if(loading){
         return <div className="spin"><Spin /></div>

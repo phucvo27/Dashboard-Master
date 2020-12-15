@@ -1,12 +1,29 @@
-import React from 'react';
-import { Row, Col, AutoComplete, Table } from 'antd'
+import React, { useState } from 'react';
+import { Row, Col, Table } from 'antd';
+import { AutoComplete } from '../../../components/autoComplete/autoComplete'
 import { TableWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
-import Heading from '../../../components/heading/heading';
 import { Cards } from '../../../components/cards/frame/cards-frame'
 import FeatherIcon from 'feather-icons-react';
+
+  
 const Drivers = (props)=>{
     const { branches, listDrivers } = props;
+    const renderOptions = () => {
+        if(branches) {
+            return branches.map(branch => {
+                return {
+                    _id: branch._id,
+                    value: branch.name
+                }
+            })
+        }else {
+            return [];
+        }
+    }
+    const [state, setState] = useState({
+        branches: renderOptions()
+    })
     const dataSource = [];
     const columns = [
         {
@@ -56,38 +73,40 @@ const Drivers = (props)=>{
         }
     }
 
-    const renderOptions = () => {
-        if(branches) {
-            return branches.map(branch => {
-                return {
-                    _id: branch._id,
-                    value: branch.name
-                }
-            })
-        }else {
-            return [];
-        }
-    }
+    
     const handleSelectBranch = (value, option) => {
         console.log(option)
     }
+    const onSearch = searchText => {
+        let arrayData = [];
+        if(props.branches){
+            const data = props.branches.filter(item => item.name.toUpperCase().startsWith(searchText.toUpperCase()));
+            if (data.length) {
+                data.map(item => arrayData.push(item.value));
+            } else {
+                arrayData = ['Data Not Found!'];
+            }
+            setState({
+                branches: !searchText ? renderOptions() : arrayData,
+            });
+        }
+      };
+    
     return (
         <>
             <Row gutter={30} style={{marginTop: "40px"}}>
-                <Col span={8}>
-                    <p>Chọn Chi Nhánh: </p>
-                    <AutoComplete
-                        style={{
-                            width: '100%',
-                        }} 
-                        placeholder="Xin Chọn Chi Nhánh"
-                        options={renderOptions()}
+                <Cards title="Chọn Chi Nhánh:">
+                    <AutoComplete 
+                        onSelect={handleSelectBranch} 
+                        dataSource={renderOptions()} 
+                        placeholder="Tìm kiếm chi nhánh.."
+                        onSearch={onSearch}
+                        onSelect={handleSelectBranch}
                         filterOption={(inputValue, option) =>
                             option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                         }
-                        onSelect={handleSelectBranch}
-                    />
-                </Col>
+                     />
+                </Cards>
             </Row>
             <Row gutter={30}>
                 <Cards>

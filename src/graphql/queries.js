@@ -61,11 +61,13 @@ export const ADMIN_LIST_ORDERS = gql`
             totalPages
             docs {
                 _id
+                orderCode
                 discountCode
               	discountType
               	discountValue
                 status
                 totalAmount
+                sellDate
                 shippingAddress {
                     addressNo
                     ward {

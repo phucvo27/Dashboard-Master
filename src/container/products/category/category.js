@@ -10,10 +10,12 @@ import { ExportButtonPageHeader } from '../../../components/buttons/export-butto
 import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
 const Category = (props) => {
   const dataSource = [];
-  const[pageSize, setPageSize] = useState(7)
+  const [pageSize, setPageSize] = useState(7)
+  const [nameCategory, setNameCategory] = useState('');
+  const [categories, setCategories] = useState(props.listCategories.docs ? props.listCategories.docs : [])
   const { listCategories } = props;
-  if(listCategories.docs.length > 0) {
-    listCategories.docs.map((category, idx) => {
+  if(categories.length > 0) {
+    categories.map((category, idx) => {
       const {name, _id} = category;
       return dataSource.push({
         key: idx,
@@ -63,6 +65,22 @@ const Category = (props) => {
   const onPageChange = (page) => {
     console.log(page)
   }
+  const handleChangeCategoryName = e => {
+    const {value} = e.target;
+    setNameCategory(value)
+  }
+  const handleAddSuccess = (noti) => {
+    notification['success']({
+        message: noti.title,
+        description: noti.des,
+      });
+    setNameCategory('')
+}
+  const createCategory = () => {
+    if(nameCategory){
+      props.addCategory(nameCategory, handleAddSuccess)
+    }
+  }
   return (
     <>
       <PageHeader
@@ -89,10 +107,10 @@ const Category = (props) => {
                 </div>
                 <Row gutter={25} align="bottom">
                     <Col span="8">
-                        <Input type="text" placeholder="Enter new category.." />
+                        <Input value={nameCategory} type="text" onChange={handleChangeCategoryName} placeholder="Enter new category.." />
                     </Col>
                     <Col span="2">
-                        <Button block size="large" raised type="primary">Add</Button>
+                        <Button onClick={createCategory} block size="large" raised type="primary">Add</Button>
                     </Col>
                 </Row>
             </Cards>

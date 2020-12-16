@@ -162,6 +162,35 @@ export const ADMIN_LIST_PRODUCTS = gql`
     }
     }
 `;
+export const ADMIN_CREATE_PRODUCT =  gql`
+mutation AddCreateProduct($adminCreateProductInput: AdminCreateProductInput!){
+    adminCreateProduct(adminCreateProductInput: $adminCreateProductInput) {
+        _id
+        name
+    }
+}
+`;
+// ========================= Category =========================
+
+export const ADMIN_CREATE_CATEGORY = gql`
+    mutation AdminCreateCategory($adminCreateCategoryInput: AdminCreateCategoryInput!){
+        adminCreateCategory(adminCreateCategoryInput: $adminCreateCategoryInput){
+            _id
+            name
+        }
+    }
+`;
+
+export const ADMIN_UPDATE_CATEGORY = gql`
+    mutation AdminUpdateCategory($id: ID!, $adminUpdateCategoryInput: AdminUpdateCategoryInput!){
+        adminUpdateCategory(id: $id, adminUpdateCategoryInput: $adminUpdateCategoryInput){
+            _id
+            name
+        }
+    }
+
+`;
+
 // ========================= Coupon =========================
 export const GET_COUPONS = gql`
     query AdminListCoupon {

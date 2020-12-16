@@ -10,7 +10,7 @@ import { Button } from '../../../components/buttons/buttons';
 import { ShareButtonPageHeader } from '../../../components/buttons/share-button/share-button';
 import { ExportButtonPageHeader } from '../../../components/buttons/export-button/export-button';
 import { CalendarButtonPageHeader } from '../../../components/buttons/calendar-button/calendar-button';
-import { cartGetData } from '../../../redux/cart/actionCreator';
+//import { cartGetData } from '../../../redux/cart/actionCreator';
 import Drivers from '../../Assign/Driver/Driver.container'
 //const Checkout = lazy(() => import('../overview/CheckOut'));
 const CartTable = lazy(() => import('../overview/CartTable'));
@@ -24,42 +24,35 @@ const ShoppingCart = (props) => {
     discountValue
   }
   const [isAssign, assignDriver] = useState(false)
-  const dispatch = useDispatch();
-  const { cartData } = useSelector(state => {
-    return {
-      cartData: state.cart.data,
-      rtl: state.ChangeLayoutMode.rtlData,
-    };
-  });
+  //const dispatch = useDispatch();
+  // const { cartData } = useSelector(state => {
+  //   return {
+  //     cartData: state.cart.data,
+  //     rtl: state.ChangeLayoutMode.rtlData,
+  //   };
+  // });
   const { path, isExact } = useRouteMatch();
-  const [state, setState] = useState({
-    coupon: 0,
-    promo: 0,
-    current: 0,
-  });
+  // const [state, setState] = useState({
+  //   coupon: 0,
+  //   promo: 0,
+  //   current: 0,
+  // });
 
-  useEffect(() => {
-    if (cartGetData) {
-      dispatch(cartGetData());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (cartGetData) {
+  //     dispatch(cartGetData());
+  //   }
+  // }, [dispatch]);
 
   let subtotal = 0;
 
-  if (cartData !== null) {
-    cartData.map(data => {
-      const { quantity, price } = data;
-      subtotal += parseInt(quantity, 10) * parseInt(price, 10);
-      return subtotal;
-    });
-  }
-
-  const onHandleCurrent = current => {
-    setState({
-      ...state,
-      current,
-    });
-  };
+  // if (cartData !== null) {
+  //   cartData.map(data => {
+  //     const { quantity, price } = data;
+  //     subtotal += parseInt(quantity, 10) * parseInt(price, 10);
+  //     return subtotal;
+  //   });
+  // }
   const handleChangeAssignDriver = checked => {
     assignDriver(checked)
 
@@ -139,7 +132,7 @@ const ShoppingCart = (props) => {
                 <Row>
                   <Col span={24}>
                   {
-                    isAssign && <Drivers />
+                    isAssign && <Drivers orderid={props.orderid} order={props.order} />
                   }
                   </Col>
                 </Row>

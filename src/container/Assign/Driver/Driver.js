@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, notification, Space } from 'antd';
 import { AutoComplete } from '../../../components/autoComplete/autoComplete'
 import { TableWrapper } from '../../styled';
 import { Button } from '../../../components/buttons/buttons';
@@ -8,7 +8,8 @@ import FeatherIcon from 'feather-icons-react';
 
   
 const Drivers = (props)=>{
-    const { branches, listDrivers } = props;
+    const { branches, listDrivers, branchOrder, driverOrder } = props;
+    
     const renderOptions = () => {
         if(branches) {
             return branches.map(branch => {
@@ -47,8 +48,15 @@ const Drivers = (props)=>{
             key: 'action',
         },
     ]
+    const callbackSuccess = (noti) => {
+        notification['success']({
+            message: noti.title,
+            description: noti.des,
+          });
+    }
     if(listDrivers.docs) {
         const { docs: drivers } = listDrivers;
+        let driverId = driverOrder ? driverOrder._id : '';
         for(let i = 0; i < drivers.length; i++){
             const { name, _id, email, phone } = drivers[i]
             dataSource.push({
@@ -59,23 +67,25 @@ const Drivers = (props)=>{
                 action: (
                     <div className="table-actions">
                         <>
-                        <Button className="btn-icon" type="primary" to="#" shape="circle">
-                            <FeatherIcon icon="user-plus" size={16} />
-                        </Button>
-                        <Button className="btn-icon" type="primary" to="#" shape="circle">
-                            <FeatherIcon icon="user-minus" size={16} style={{color: '#FF4D4F'}} />
-                        </Button>
-                        
+                        {
+                            driverId === _id 
+                                ? <Button className="btn-icon" type="primary" to="#" shape="circle">
+                                    <FeatherIcon icon="user-check" size={16} style={{color: '#20C997'}} />
+                                </Button>
+                                :
+                                <Button onClick={()=>{ props.assignDriver(_id, callbackSuccess)}} className="btn-icon" type="primary" to="#" shape="circle">
+                                    <FeatherIcon icon="user-plus" size={16} />
+                                </Button>
+                        }
                         </>
                     </div>
                 )
             })
         }
     }
-
-    
     const handleSelectBranch = (value, option) => {
         console.log(option)
+        props.assignBranch(option._id, callbackSuccess)
     }
     const onSearch = searchText => {
         let arrayData = [];
@@ -106,6 +116,24 @@ const Drivers = (props)=>{
                             option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                         }
                      />
+                    <Row>
+                        <Col span={24}>
+                            <Space size="large" style={{marginTop: '30px'}}>
+                                <h4>Chi Nhánh Đã Đăng Ký: </h4>
+                                <p style={{marginBottom: '0.5em'}}>{branchOrder ? branchOrder : 'Chưa Đăng Ký'}</p>
+                            </Space>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24}>
+                            <Space size="large" style={{marginTop: '30px'}}>
+                                <h4>Tài Xế Đang Nhận Đơn: </h4>
+                                <p style={{marginBottom: '0.5em'}}>
+                                    {driverOrder ? driverOrder.email : 'Chưa Đăng Ký'}
+                                </p>
+                            </Space>
+                        </Col>
+                    </Row>
                 </Cards>
             </Row>
             <Row gutter={30}>

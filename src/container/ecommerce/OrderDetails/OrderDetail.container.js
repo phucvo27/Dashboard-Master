@@ -23,7 +23,7 @@ const OrderDetailContainer = props => {
 
     const { adminGetOrder } = data;
     //console.log(adminGetOrder);
-    return <OrderDetail order={adminGetOrder} />
+    return <OrderDetail orderid={orderid} order={adminGetOrder} />
 }
 
 export default OrderDetailContainer;

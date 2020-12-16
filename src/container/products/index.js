@@ -74,7 +74,6 @@ const Product = (props) => {
       key: 'operation',
       fixed: 'right',
       width: 100,
-      fixed: 'right',
       render: (text, record) => {
             return (
               <div className="table-actions">
@@ -230,6 +229,7 @@ const Product = (props) => {
                   }}
                   dataSource={convert()}
                   columns={columns}
+                  pagination={false}
                   // pagination={
                   //   { 
                   //     pageSize: pageSize, 

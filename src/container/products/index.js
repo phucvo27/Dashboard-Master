@@ -159,20 +159,10 @@ const Product = (props) => {
       <PageHeader
         ghost
         title="Sản Phẩm"
-        buttons={[
-          <div key="6" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
+        
       />
       <Main>
-      <Row gutter={25}>
+        {/* <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>
               <div style={{ minHeight: '40px' }}>
@@ -180,7 +170,7 @@ const Product = (props) => {
               </div>
             </Cards>
           </Col>
-        </Row>
+        </Row> */}
         <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>
@@ -197,20 +187,26 @@ const Product = (props) => {
                   </Cards>
                 </Col>
                 <Col span={8}>
-                <Cards title="Vùng">
-                    <SelectWrapperStyle>
-                      <Select onSelect={value => { console.log(value); setRegion(value)}} defaultValue={region} style={{ width: '100%' }}>
-                        {renderRegion()}
-                      </Select>
-                      
-                      
-                    </SelectWrapperStyle>
-                  </Cards>
-                </Col>
+                  <Cards title="Vùng">
+                      <SelectWrapperStyle>
+                        <Select onSelect={value => { console.log(value); setRegion(value)}} defaultValue={region} style={{ width: '100%' }}>
+                          {renderRegion()}
+                        </Select>
+                        
+                        
+                      </SelectWrapperStyle>
+                    </Cards>
+                  </Col>
+              </Row>
+              <Row>
+              <Col lg={24} xs={24} style={{margin: '20px 0px'}}>
+                <Button onClick={()=>{props.history.push('/admin/products/add')}} type="primary" size="medium">Tạo Sản Phẩm</Button>
+              </Col>
               </Row>
             </Cards>
             
           </Col>
+          
         </Row>
           <Row gutter={15}>
             <Col md={24}>

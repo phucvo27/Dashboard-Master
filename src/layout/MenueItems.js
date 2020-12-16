@@ -52,21 +52,22 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
           Đơn Hàng
         </NavLink>
       </Menu.Item>
+      
       <SubMenu key="promotions" icon={!topMenu && <FeatherIcon icon="gift" />} title="Khuyến Mãi">
         <Menu.Item key="flashSale">
-          <NavLink onClick={toggleCollapsed} to={`${path}/products`}>
-            Flash Sale
+          <NavLink onClick={toggleCollapsed} to={`${path}/coupons`}>
+           Coupon
           </NavLink>
         </Menu.Item>
         
         <Menu.Item key="coupon">
-          <NavLink onClick={toggleCollapsed} to={`${path}/products/category`}>
-            Coupon
+          <NavLink onClick={toggleCollapsed} to={`${path}/coupons/add`}>
+            Tạo Coupon
           </NavLink>
         </Menu.Item>
       </SubMenu>
       <Menu.Item key="chat" icon={<FeatherIcon icon="message-circle" />}>
-        <NavLink onClick={toggleCollapsed} to={`${path}/chat/private`}>
+        <NavLink onClick={toggleCollapsed} to={`${path}/chat/private/rofiq@gmail.com`}>
           Chat
         </NavLink>
       </Menu.Item>

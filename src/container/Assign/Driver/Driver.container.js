@@ -8,10 +8,13 @@ import { Spin } from 'antd'
 const DriverContainer = props => {
     const { orderid, order } =props;
     const converBranch = branch => {
-        const { address } = branch;
-        const { ward, district, addressNo, city} = address;
-        const shippingAddress = `${addressNo}/${ward.name}/${district.name}/${city.name}`;
-        return shippingAddress;
+        if(branch){
+            const { address } = branch;
+            const { ward, district, addressNo, city} = address;
+            const shippingAddress = `${addressNo}/${ward.name}/${district.name}/${city.name}`;
+            return shippingAddress;
+        }
+        return ''
     }
     const [branchOrder, setBranchOrder] = useState(props.order ? converBranch(props.order.branch) : null);
     const [driverOrder, setDriverOrder] = useState(props.order ? props.order.driver : null)

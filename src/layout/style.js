@@ -208,7 +208,8 @@ const Div = Styled.div`
         }
         img{
             max-width: ${({ theme }) => (theme.topMenu ? '140px' : '120px')};
-            width: 100%;
+            width: 40px;
+            height: 40px;
         }
         &.top-menu{
             ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 15px;

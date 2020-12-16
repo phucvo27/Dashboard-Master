@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import { Aside, Content } from './overview/style';
-import Heading from '../../../components/heading/heading';
+//import Heading from '../../../components/heading/heading';
 
 const AuthLayout = WraperContent => {
   return () => {
@@ -13,16 +13,12 @@ const AuthLayout = WraperContent => {
               <img src={require('../../../static/img/auth/topShape.png')} alt="" className="topShape" />
               <img src={require('../../../static/img/auth/bottomShape.png')} alt="" className="bottomShape" />
               <Content>
-                <img style={{ width: '150px' }} src={require('../../../static/img/Logo_Dark.svg')} alt="" />
+                {/* <img style={{ width: '50px' }} src={require('../../../static/img/logo/logo.png')} alt="" /> */}
                 <br />
                 <br />
-                <Heading as="h1">
-                  StrikingDash React <br />
-                  Web Application
-                </Heading>
                 <img
                   className="auth-content-figure"
-                  src={require('../../../static/img/auth/Illustration.png')}
+                  src={require('../../../static/img/auth-logo.png')}
                   alt=""
                 />
               </Content>

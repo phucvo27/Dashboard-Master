@@ -4,7 +4,8 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Dashboard from './dashboard';
 import ChatApp from '../../container/chat/ChatApp';
 import Product from './products'
-import Orders from './orders'
+import Orders from './orders';
+import Coupon from './promotions'
 import withAdminLayout from '../../layout/withAdminLayout';
 
 const Admin = () => {
@@ -22,6 +23,7 @@ const Admin = () => {
         <Route path={path} component={Dashboard} />
         <Route path={`${path}/products`} component={Product} />
         <Route path={`${path}/orders`} component={Orders} />
+        <Route path={`${path}/coupons`} component={Coupon} />
         <Route path={`${path}/chat`} component={ChatApp} />
       </Suspense>
     </Switch>

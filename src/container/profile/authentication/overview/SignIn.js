@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
+// import { FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
 import { AuthWrapper } from './style';
 import { login } from '../../../../redux/authentication/actionCreator';
 import { Checkbox } from '../../../../components/checkbox/checkbox';
@@ -59,7 +59,7 @@ const SignIn = () => {
               {isLoading ? 'Loading...' : 'Sign In'}
             </Button>
           </Form.Item>
-          <p className="form-divider">
+          {/* <p className="form-divider">
             <span>Or</span>
           </p>
           <ul className="social-login">
@@ -79,7 +79,7 @@ const SignIn = () => {
                 <TwitterOutlined />
               </Link>
             </li>
-          </ul>
+          </ul> */}
         </Form>
       </div>
     </AuthWrapper>

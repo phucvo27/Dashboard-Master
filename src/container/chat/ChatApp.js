@@ -90,17 +90,7 @@ const ChatApp = ({ match }) => {
       <PageHeader
         ghost
         title="Chat"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader />
-            <ExportButtonPageHeader />
-            <ShareButtonPageHeader />
-            <Button size="small" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
+        
       />
 
       <Main>

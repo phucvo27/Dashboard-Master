@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const ADMIN_LIST_CATEGORIES = gql`
-    query AdminListCategories {
-        adminListCategories {
+    query AdminListCategories($page: Int, $perPage: Int) {
+        adminListCategories(page: $page, perPage: $perPage) {
             docs {
                 _id
                 name

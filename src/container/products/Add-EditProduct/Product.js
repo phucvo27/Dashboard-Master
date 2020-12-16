@@ -237,17 +237,7 @@ const AddProduct = (props) => {
       <PageHeader
         ghost
         title="Thêm Sản Phẩm"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>
-        ]}
+        
       />
       <Main>
         <Row gutter={15} justify="center">
@@ -333,7 +323,7 @@ const AddProduct = (props) => {
                                   {/* Branch */}
                                   
                                   <Form.Item name="branch" 
-                                    initialValue={props.currentProduct ? props.currentProduct.branches[0]._id : ''} 
+                                    // initialValue={props.currentProduct ? props.currentProduct.branches[0]._id : ''} 
                                     label="Chi Nhánh">
                                     <AutoComplete 
                                           onSelect={handleSelectBranch} 

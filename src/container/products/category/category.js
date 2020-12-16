@@ -70,7 +70,7 @@ const Category = (props) => {
     setNameCategory(value)
   }
   const handleAddSuccess = (noti) => {
-    notification['success']({
+    notification[`${noti.type}`]({
         message: noti.title,
         description: noti.des,
       });
@@ -86,17 +86,7 @@ const Category = (props) => {
       <PageHeader
         ghost
         title="Category"
-        buttons={[
-          <div key="6" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
+        
       />
       <Main>
         <Row gutter={25}>

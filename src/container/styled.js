@@ -1070,6 +1070,258 @@ const FormGroupWrapper = Styled.div`
         }
     }
 `;
+const TopToolBox = Styled.div`
+    margin-bottom: 20px;
+    /* // Toolbox Common Styles */
+    .ant-row{
+        align-items: center;
+    }
+    .table-toolbox-menu{
+        margin: -10px;
+        color: ${({ theme }) => theme['gray-color']};
+        @media only screen and (max-width: 1599px){
+            text-align: ${({ theme }) => (theme.rtl ? 'left' : 'right')};
+        }
+        @media only screen and (max-width: 991px){
+            margin-top: 20px;
+        }
+        .ant-radio-button-wrapper{
+            height: 40px;
+            line-height: 40px;
+            padding: 0 12.5px;
+            &.active{
+                span{
+                    color: ${({ theme }) => theme['primary-color']};
+                }
+            }
+        }
+        @media only screen and (max-width: 991px){
+            text-align: center;
+        }
+        .toolbox-menu-title,
+        .ant-radio-group-outline{
+            margin: 10px;
+        }
+    }
+    .ant-select{
+        @media only screen and (max-width: 1599px){
+            margin-bottom: 20px;
+        }
+        @media only screen and (max-width: 767px){
+            max-width: 350px;
+            margin: 0 auto 20px;
+        }
+        .ant-select-selection-search{
+            @media only screen and (max-width: 991px){
+                width: 100% !important;
+            }
+            .ant-select-selection-search-input{
+                min-width: 350px;
+                @media only screen and (max-width: 1792px){
+                    min-width: 230px;
+                }
+            }
+        }
+    }
+    .search-result{
+        margin: ${({ theme }) => (theme.rtl ? '0 25px 0 0' : '0 0 0 25px')};
+        color: ${({ theme }) => theme['gray-color']};
+        @media only screen and (max-width: 1599px){
+            text-align: ${({ theme }) => (theme.rtl ? 'left' : 'right')};
+            margin-bottom: 15px;
+        }
+        @media only screen and (max-width: 991px){
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        @media only screen and (max-width: 991px){
+            ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: 0px;
+        }
+    }
+    .ant-select-selector{
+        height: 46px !important;
+        .ant-select-selection-search-input{
+            box-shadow: 0 5px 20px ${({ theme }) => theme['light-color']}3;
+            border-radius: 23px;
+            border: 0 none;
+            input{
+                height: 46px !important;
+            }
+        }
+    }
+
+    .ant-radio-group-outline{
+        padding: 0 10px;
+        border-radius: 5px;
+        background: #fff;
+        border: 1px solid ${({ theme }) => theme['border-color-normal']};
+        @media only screen and (max-width: 1792px){
+            padding: 0 5px;
+        }
+        @media only screen and (max-width: 991px){
+            padding: 0;
+        }
+    }
+    .ant-radio-button-wrapper{
+        height: 40px;
+        line-height: 42px;
+        padding: 0 12px;
+        border-color: ${({ theme }) => theme['border-color-normal']};
+        border: 0 none !important;
+        @media only screen and (max-width: 1792px){
+            padding: 0 7.5px;
+        }
+        @media only screen and (max-width: 1599px){
+            padding: 0 12.5px;
+        }
+        &.ant-radio-button-wrapper-checked{
+            &:focus-within{
+                box-shadow: 0 0;
+            }
+        }
+        &:not(:first-child){
+            &:before{
+                display: none;
+            }
+        }
+        &:not(:last-child){
+            &:after{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                ${({ theme }) => (theme.rtl ? 'left' : 'right')}: 0px;
+                display: block;
+                box-sizing: content-box;
+                width: 1px;
+                height: 50%;
+                padding: 1px 0;
+                background-color: #F1F2F6;
+                transition: background-color 0.3s;
+                content: '';
+                z-index: 1;
+                @media only screen and (max-width: 479px){
+                    display: none;
+                }
+            }
+        }
+        span{
+            color: ${({ theme }) => theme['light-color']};
+            @media only screen and (max-width: 1792px){
+                font-size: 13px;
+            }
+        }
+        &.ant-radio-button-wrapper-checked{
+            span{
+                color: ${({ theme }) => theme['primary-color']};
+            }
+        }
+    }
+
+    // Product Toolbox Styles
+    .product-list-action{
+        @media only screen and (max-width: 991px){
+            flex-flow: column;
+            justify-content: center;
+        }
+    }
+    .product-list-action__tab{
+        margin: -10px;
+        color: ${({ theme }) => theme['gray-color']};
+        
+        @media only screen and (max-width: 767px){
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        @media only screen and (max-width: 991px) and (min-width: 768px){
+            margin: -10px -10px 0;
+        }
+        @media only screen and (max-width: 575px){
+            margin: -6px -6px 0;
+        }
+        @media only screen and (max-width: 344px){
+            .ant-radio-group-outline{
+                margin-top: 8px;
+                ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: 0;;
+            }
+        }
+        .toolbox-menu-title,
+        .ant-radio-group{
+            margin: 10px;
+            @media only screen and (max-width: 575px){
+                margin: 6px
+            }
+        }
+    }
+
+    .product-list-action__viewmode{
+        display: flex;
+        align-items: center;
+        a{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: ${({ theme }) => theme['light-color']};
+            box-shadow: 0 5px 20px ${({ theme }) => theme['light-color']}10;
+            &.active{
+                background-color: #fff;
+                color: ${({ theme }) => theme['primary-color']};
+            }
+        }
+    }
+
+    .table-search-box{
+        @media only screen and (max-width: 991px){
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .ant-select{
+            margin-bottom: 0;
+        }
+        .ant-select-selection-search{
+            width: 100% !important;
+            .ant-select-selection-search-input {
+                border-radius: 20px;
+                border: 0 none;
+                background: ${({ theme }) => theme['bg-color-light']};
+                height: 40px;
+                input{
+                    background: ${({ theme }) => theme['bg-color-light']};
+                    height: 40px !important;
+                }
+            }
+        }
+    }
+    .table-toolbox-actions{
+        text-align: ${({ theme }) => (theme.rtl ? 'left' : 'right')};
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        @media only screen and (max-width: 1599px){
+            margin-top: 20px;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+        button{
+            padding: 0px 13.4px;
+            height: 38px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            svg,
+            i{
+                color: #fff;
+            }
+            &{
+                +button{
+                    ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: 8px;
+                }
+            }
+        }
+    }
+`;
 
 const TableWrapper = Styled.div`
     .ant-pagination-prev, .ant-pagination-next {
@@ -1409,5 +1661,6 @@ export {
   FormGroupWrapper,
   DragDropStyle,
   TableWrapper,
-  SelectWrapperStyle
+  SelectWrapperStyle,
+  TopToolBox
 };

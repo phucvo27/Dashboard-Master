@@ -163,12 +163,20 @@ export const ADMIN_LIST_PRODUCTS = gql`
     }
 `;
 export const ADMIN_CREATE_PRODUCT =  gql`
-mutation AddCreateProduct($adminCreateProductInput: AdminCreateProductInput!){
-    adminCreateProduct(adminCreateProductInput: $adminCreateProductInput) {
-        _id
-        name
+    mutation AddCreateProduct($adminCreateProductInput: AdminCreateProductInput!){
+        adminCreateProduct(adminCreateProductInput: $adminCreateProductInput) {
+            _id
+            name
+        }
     }
-}
+`;
+export const ADMIN_UPDATE_PRODUCT =  gql`
+    mutation AdminUpdateProduct($id: ID!, $adminUpdateProductInput: AdminUpdateProductInput!){
+        adminUpdateProduct(id: $id, adminUpdateProductInput: $adminUpdateProductInput) {
+            _id
+            name
+        }
+    }
 `;
 // ========================= Category =========================
 
@@ -266,14 +274,20 @@ export const ADMIN_REMOVE_CUSTOMER_FROM_COUPON = gql`
     }
 `;
 // ========================= End Coupon =========================
-export const GET_PRODUCT = gql`
-    query GetProduct($id: ID!){
-        getProduct(id: $id){
+export const ADMIN_GET_PRODUCT = gql`
+    query AdminGetProduct($id: ID!){
+        adminGetProduct(id: $id){
             _id
             name
             description
             sku
+            barcodeType
+            salePriceType
             salePrice
+            branches {
+                _id
+                name
+            }
             category {
                 _id
                 name

@@ -100,7 +100,7 @@ const Drivers = (props)=>{
                 branches: !searchText ? renderOptions() : arrayData,
             });
         }
-      };
+    };
     
     return (
         <>

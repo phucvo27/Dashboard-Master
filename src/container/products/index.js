@@ -81,13 +81,7 @@ const Product = (props) => {
                   <Button className="btn-icon" type="primary" to="#" shape="circle">
                     <FeatherIcon icon="eye" size={16} />
                   </Button>
-                  <Button className="btn-icon" type="info" to="#" shape="circle" onClick={()=>{
-                      notification['success']({
-                        message: 'Notification Title',
-                        description:
-                            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-                      });
-                  }}>
+                  <Button className="btn-icon" type="info" to="#" shape="circle" onClick={()=>{ props.history.push(`/admin/products/edit/${record._id}`)}}>
                     <FeatherIcon icon="edit" size={16} />
                   </Button>
                   <Button className="btn-icon" type="danger" to="#" shape="circle">

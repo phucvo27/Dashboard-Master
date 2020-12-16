@@ -25,7 +25,7 @@ const ProductContainer = props => {
 
     const { adminListProducts } = data;
 
-    return <Product adminListProducts={adminListProducts} categories={categories} regions={regions} />
+    return <Product {...props} adminListProducts={adminListProducts} categories={categories} regions={regions} />
 }
 
 export default flowRight(

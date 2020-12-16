@@ -180,17 +180,17 @@ const Orders = (props) => {
       <PageHeader
         ghost
         title="Orders"
-        buttons={[
-          <div key="1" className="page-header-actions">
-            <CalendarButtonPageHeader key="1" />
-            <ExportButtonPageHeader key="2" />
-            <ShareButtonPageHeader key="3" />
-            <Button size="small" key="4" type="primary">
-              <FeatherIcon icon="plus" size={14} />
-              Add New
-            </Button>
-          </div>,
-        ]}
+        // buttons={[
+        //   <div key="1" className="page-header-actions">
+        //     <CalendarButtonPageHeader key="1" />
+        //     <ExportButtonPageHeader key="2" />
+        //     <ShareButtonPageHeader key="3" />
+        //     <Button size="small" key="4" type="primary">
+        //       <FeatherIcon icon="plus" size={14} />
+        //       Add New
+        //     </Button>
+        //   </div>,
+        // ]}
       />
       <Main>
         <Cards headless>
@@ -226,9 +226,9 @@ const Orders = (props) => {
                       <Button size="small" type="secondary" transparented>
                         Export
                       </Button>
-                      <Button size="small" type="primary">
+                      {/* <Button size="small" type="primary">
                         <FeatherIcon icon="plus" size={12} /> Add Order
-                      </Button>
+                      </Button> */}
                     </div>
                   </Col>
                 </Row>
